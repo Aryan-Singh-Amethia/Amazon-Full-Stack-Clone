@@ -1,5 +1,4 @@
  import "./Home.css";
- import PrimeImg from './resources/prime-video.jpg';
  import Product from "./Product";
 
 const Home = () =>{
@@ -46,8 +45,7 @@ const Home = () =>{
                 image="https://m.media-amazon.com/images/I/81V+s2BBy3L._AC_UY327_QL65_.jpg"
                 price="569.99"
                 rating={4}/>
-           </div>
-           
+           </div>  
         </div>
     );
 };

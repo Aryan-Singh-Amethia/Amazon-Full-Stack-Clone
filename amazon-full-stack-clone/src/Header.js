@@ -25,6 +25,7 @@ function Header() {
                className='header__searchIcon'/>
             </div>
             <div className='header__nav'>
+                <Link to='/login'>
                 <div className='header__option'>
                     <span className='header__optionLineOne'>
                         Hello Guest
@@ -33,6 +34,7 @@ function Header() {
                         Sign In
                     </span>
                 </div>
+                </Link>
                 <div className='header__option'>
                 <span className='header__optionLineOne'>
                         Returns
