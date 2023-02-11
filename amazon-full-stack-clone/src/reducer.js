@@ -26,6 +26,13 @@ const reducer = (state , action) =>{
                totalPrice : +state.totalPrice-(+action.price)
             }
         }
+
+        case 'SET_USER':{
+            return {
+                ...state,
+                user : action.user
+            }
+        }
         default : return state;
       }
 };

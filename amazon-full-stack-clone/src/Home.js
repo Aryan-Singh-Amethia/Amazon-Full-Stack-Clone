@@ -34,17 +34,17 @@ const Home = () =>{
                 price="99.99"
                 rating={5}/>
              <Product
-                title="Apple 2020 MacBook Air Laptop M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Silver"
-                image="https://m.media-amazon.com/images/I/71TPda7cwUL._SX679_.jpg"
-                price="199.99"
-                rating={5}/>
-           </div>
-           <div className="home__row">
-             <Product
                 title="Samsung 138 cm (55 inches) The Frame Series 4K Ultra HD Smart QLED TV QA55LS03AAKLXL (Black)"
                 image="https://m.media-amazon.com/images/I/81V+s2BBy3L._AC_UY327_QL65_.jpg"
                 price="569.99"
                 rating={4}/>
+           </div>
+           <div className="home__row">
+            <Product
+                title="Apple 2020 MacBook Air Laptop M1 chip, 13.3-inch/33.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Silver"
+                image="https://m.media-amazon.com/images/I/71TPda7cwUL._SX679_.jpg"
+                price="199.99"
+                rating={5}/>  
            </div>  
         </div>
     );
