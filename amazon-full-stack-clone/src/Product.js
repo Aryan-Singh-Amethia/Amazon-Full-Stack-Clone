@@ -1,11 +1,18 @@
 import './Product.css';
 import { useStateValue } from './StateProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({id,title,image,price,rating}) =>{
-
-   const [{basket}, dispatch] = useStateValue();
+   
+   const [{basket,user}, dispatch] = useStateValue();
    console.log("this is the basket >>>",basket);
+   const navigate = useNavigate();
    const addToCartHandler = () =>{
+      
+      if(!user){
+         alert('Please Sign-In before adding items to cart !!');
+         navigate('/login');
+      }else{
       dispatch({
          type : 'ADD_TO_BASKET',
          item : {
@@ -16,6 +23,7 @@ const Product = ({id,title,image,price,rating}) =>{
             rating : rating
          }
       });
+   }
    };
 
    return (

@@ -51,18 +51,6 @@ const Payment = () =>{
             amount : totalPrice,
             created : new Date()
          });
-        
-
-        //  db.collection('users')
-        //  .doc(user?.uid)
-        //  .collection('orders')
-        //  .doc(totalPrice+Math.floor(Math.random() * 90 + 10))
-        //  .set({
-        //    basket : basket ,
-        //    amount : totalPrice,
-        //    created : new Date()
-        //  })
-
          navigate('/orders'); // Temporary Fix
 
          //Temp Fix ends here
