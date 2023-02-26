@@ -1,5 +1,4 @@
 import './Header.css';
-import AmazonLogo from './resources/amazon-logo.jpg';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
@@ -36,13 +35,14 @@ function Header() {
                 <div className='header__option'
                      onClick={handleAuthentication}>
                     <span className='header__optionLineOne'>
-                        Hello Guest
+                        Hello <strong>{user?user.email:'Guest'}</strong>
                     </span>
                     <span className='header__optionLineTwo'>
                         Sign-{`${user?'Out':'In'}`}
                     </span>
                 </div>
                 </Link>
+                <Link to={'/orders'}>
                 <div className='header__option'>
                 <span className='header__optionLineOne'>
                         Returns
@@ -51,6 +51,7 @@ function Header() {
                        & Orders
                     </span>
                 </div>
+                </Link>
                 <div className='header__option'>
                 <span className='header__optionLineOne'>
                         Your

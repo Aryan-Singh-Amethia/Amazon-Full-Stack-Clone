@@ -12,6 +12,14 @@ const reducer = (state , action) =>{
                 totalPrice : +state.totalPrice + (+action.item.price)
             }
         }
+
+        case 'EMPTY_BASKET' : {
+            return {
+                ...state,
+                basket : []
+            }
+        };
+
         case 'REMOVE_FROM_BASKET' :{
             let newObjects = [...state.basket];
             const index = newObjects.findIndex((obj)=>(obj.id===action.id));
