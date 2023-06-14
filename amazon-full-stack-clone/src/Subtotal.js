@@ -21,7 +21,6 @@ const Subtotal = () =>{
                 This order contains a gift.
             </small>
             </div>
-
          )}
          decimalScale={2}
          value={totalPrice}
@@ -29,8 +28,14 @@ const Subtotal = () =>{
          thousandSeparator={true}
          prefix={"$"}/>
 
-         <button onClick={e=>history('/payments')}
-                 >Proceed To Checkout</button>
+         <button onClick={(e)=>{
+            if(basket?.length===0){
+               alert('There are no items in your cart !! Please add some items to proceed to checkout !!');
+               history('/');
+            }else{
+               history('/payments');
+            }
+         }}>Proceed To Checkout</button>
     </div>
    );
 };

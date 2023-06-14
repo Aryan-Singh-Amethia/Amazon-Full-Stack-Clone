@@ -4,7 +4,7 @@ import AmazonLogoForLoginPage from './resources/AmazonLogoForLoginPage';
 import { useState} from 'react';
 import { auth } from './firebase';
 import { useNavigate } from 'react-router-dom';
-import {createUserWithEmailAndPassword ,signInWithEmailAndPassword} from '@firebase/auth';
+import {createUserWithEmailAndPassword ,signInWithEmailAndPassword} from 'firebase/auth';
 
 const Login = () =>{
 

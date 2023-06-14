@@ -1,6 +1,6 @@
 import './Order.css';
-import moment from 'moment';
-import CheckoutProduct from './CheckoutProduct';
+// import moment from 'moment';
+// import CheckoutProduct from './CheckoutProduct';
 
 const Order = ({id,title,image,price,rating}) => {
     return (

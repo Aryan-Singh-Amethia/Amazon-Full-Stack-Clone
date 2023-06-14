@@ -6,6 +6,7 @@ export const initialState = {
 const reducer = (state , action) =>{
       switch(action.type){
         case 'ADD_TO_BASKET' : {
+            console.log(`adding ${action.item.price} to ${state.totalPrice}`);
             return {
                 ...state,
                 basket : [...state.basket ,action.item] ,
@@ -23,11 +24,12 @@ const reducer = (state , action) =>{
         case 'REMOVE_FROM_BASKET' :{
             let newObjects = [...state.basket];
             const index = newObjects.findIndex((obj)=>(obj.id===action.id));
-            if(index >= 0){
+            if(index >= 0) {
                 newObjects.splice(index,1);
             }else{
                 console.warn(`Cannot remove item with id ${action.id} as it's already not in the cart!!`);
             }
+            console.log(`Removing ${action.price} from ${state.totalPrice}`);
             return {
                ...state, 
                basket : newObjects,
