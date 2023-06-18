@@ -3,41 +3,49 @@ import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "./StateProvider";
 import { useNavigate } from "react-router-dom";
 
-const Subtotal = () =>{
-   const [{basket,totalPrice} , dispatcher] = useStateValue();
-   console.log('CONTEXT :: ',basket);
-   const history = useNavigate();
-   return(
+const Subtotal = () => {
+  const [{ basket, totalPrice }, dispatcher] = useStateValue();
+  console.log("CONTEXT :: ", basket);
+  const history = useNavigate();
+  return (
     <div className="subtotal">
-       <CurrencyFormat
-         renderText = {(value) => (
-            <div>
+      <CurrencyFormat
+        renderText={(value) => (
+          <div>
             <p>
-                {/*Part of Homework */}
-                Subtotal (<strong>{basket?.length}</strong> items) : <strong>{value}</strong> 
+              {/*Part of Homework */}
+              Subtotal (<strong>{basket?.length}</strong> items) :{" "}
+              <strong>{value}</strong>
             </p>
             <small className="subtotal__gift">
-                <input type="checkbox"/>
-                This order contains a gift.
+              <input type="checkbox" />
+              This order contains a gift.
             </small>
-            </div>
-         )}
-         decimalScale={2}
-         value={totalPrice}
-         displayType={"text"}
-         thousandSeparator={true}
-         prefix={"$"}/>
+          </div>
+        )}
+        decimalScale={2}
+        value={totalPrice}
+        displayType={"text"}
+        thousandSeparator={true}
+        prefix={"$"}
+      />
 
-         <button onClick={(e)=>{
-            if(basket?.length===0){
-               alert('There are no items in your cart !! Please add some items to proceed to checkout !!');
-               history('/');
-            }else{
-               history('/payments');
-            }
-         }}>Proceed To Checkout</button>
+      <button
+        onClick={(e) => {
+          if (basket?.length === 0) {
+            alert(
+              "There are no items in your cart !! Please add some items to proceed to checkout !!"
+            );
+            history("/");
+          } else {
+            history("/payments");
+          }
+        }}
+      >
+        Proceed To Checkout
+      </button>
     </div>
-   );
+  );
 };
 
 export default Subtotal;

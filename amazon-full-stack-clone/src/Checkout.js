@@ -3,6 +3,7 @@ import { useStateValue } from './StateProvider';
 import Subtotal from './Subtotal.js';
 import CheckoutProduct from './CheckoutProduct';
 import FlipMove from 'react-flip-move';
+import { ToastContainer } from 'react-toastify';
 
 const Checkout = () =>{
    const [{basket , totalPrice ,user},dispatcher] = useStateValue();
@@ -38,6 +39,7 @@ const Checkout = () =>{
         </div>
         <div className='checkout__right'>
             <Subtotal/>
+            <ToastContainer autoClose={500}/>
         </div>
      </div>
 

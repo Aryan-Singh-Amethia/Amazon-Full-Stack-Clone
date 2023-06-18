@@ -58,6 +58,10 @@
     font-weight: 500;
 }
 
+.login__signInButton:hover{
+    background-color: #f1ca67;
+}
+
 .login__registerButton{
     border-radius: 2px;
     width: 100%;

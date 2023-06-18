@@ -118,7 +118,6 @@ const Payment = () =>{
                             rating={basketItem.rating}/>
                          ))}
                     </div> 
-                    
                 </div>
                 {/* Payment Section - Payment Method */}
                 <div className="payment__section">

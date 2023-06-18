@@ -1,6 +1,9 @@
+import Button from './Button';
 import './Product.css';
 import { useStateValue } from './StateProvider';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Product = ({id,title,image,price,rating}) =>{
    
@@ -13,6 +16,7 @@ const Product = ({id,title,image,price,rating}) =>{
          alert('Please Sign-In before adding items to cart !!');
          navigate('/login');
       }else{
+
       dispatch({
          type : 'ADD_TO_BASKET',
          item : {
@@ -40,7 +44,12 @@ const Product = ({id,title,image,price,rating}) =>{
         </div>
         <img src={image}
              alt="product_img"/>
-        <button onClick={addToCartHandler}>Add to Basket</button>     
+        <Button onClickMethod={()=>{
+          toast.success('Item Added to cart !!', {
+            autoClose:1000
+            });
+          addToCartHandler();
+        }} actionText={'Add to Basket'}/>     
      </div>
    );
 };

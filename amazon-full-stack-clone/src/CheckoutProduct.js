@@ -1,6 +1,9 @@
 import { forwardRef } from 'react';
 import './CheckoutProduct.css';
 import { useStateValue } from './StateProvider';
+import Button from './Button';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const CheckoutProduct = forwardRef(({id,title,image,price,rating,hide},ref)=>{
 
@@ -32,9 +35,15 @@ const CheckoutProduct = forwardRef(({id,title,image,price,rating,hide},ref)=>{
                      ))}
                 </div>
                 {!hide &&
-                    <button onClick={onRemoveHandler}>
-                        Remove from Cart
-                    </button>
+                    <Button
+                      onClickMethod={()=>{
+                        toast.warn('Removing Item rom Cart !!',
+                        {
+                            autoClose:1000
+                        })
+                        onRemoveHandler();}}
+                      actionText={'Remove from Cart'}
+                    />
                 }
             </div>     
         </div>
