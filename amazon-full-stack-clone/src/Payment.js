@@ -4,10 +4,11 @@ import './Payment.css';
 import { useElements ,useStripe ,CardElement } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import CurrencyFormat from "react-currency-format";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { db } from "./firebase";
 import { doc, setDoc } from "firebase/firestore"; 
+import { useLocation } from "react-router-dom";
 
 const Payment = () =>{
     const [{basket , totalPrice , user} , dispatch] = useStateValue();
@@ -23,6 +24,10 @@ const Payment = () =>{
     const [clientSecret,setClientSecret] = useState(true);
 
     const baseURL ='http://127.0.0.1:5001/challenge-4317d/us-central1/api';
+
+    const location = useLocation();
+
+    const searchParams = new URLSearchParams(location.search);
 
     useEffect(()=>{
         //Generate the special stripe secret that allows us to charge a customer
@@ -46,12 +51,20 @@ const Payment = () =>{
 
         // Temp Fix for Payment issue  
          
-         await setDoc(doc(db,'users',user?.uid),{
-            basket : basket ,
-            amount : totalPrice,
-            created : new Date()
-         });
-         navigate('/orders'); // Temporary Fix
+        //  await setDoc(doc(db,'users',user?.uid),{
+        //     basket : basket ,
+        //     amount : totalPrice,
+        //     created : new Date()
+        //  });
+
+         const userId = searchParams.get('userId');
+         const orderId= searchParams.get('orderId');
+         
+         const urlSearchParams = new URLSearchParams();
+         urlSearchParams.append('userId',userId);
+         urlSearchParams.append('orderId',orderId);
+         navigate(`/order?${urlSearchParams.toString()}`);
+         // Temporary Fix
 
          //Temp Fix ends here
 
@@ -89,7 +102,10 @@ const Payment = () =>{
          setDisabled(event.empty);
          setError(event.error?event.error.message:"");
     };
+
+    const {orderId,userId} = useParams();
     return(
+        
         <div className="payment">
             <div className="payment__container">
                 {/* Payment Section - Delivery Address */}
@@ -109,13 +125,16 @@ const Payment = () =>{
                         <h3>Review items and Delivery</h3>
                     </div>
                     <div className="payment__items">
-                         {basket?.map(basketItem =>(
+                         {
+                           basket?.map(basketItem =>(
                             <CheckoutProduct
+                            key={basketItem.id}
                             id={basketItem.id}
                             title={basketItem.title}
                             image={basketItem.image}
                             price={basketItem.price}
                             rating={basketItem.rating}/>
+                         
                          ))}
                     </div> 
                 </div>
@@ -139,7 +158,9 @@ const Payment = () =>{
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={"$"}/>
-                          <button disabled={ processing || disabled || succeeded}>
+                          <button disabled={ processing || disabled || succeeded} 
+                                  onClick={()=> dispatch({type : "EMPTY_BASKET"})}
+                                  >
                             <span>
                                 {processing?<p>Processing</p>:"Buy Now"}
                             </span>

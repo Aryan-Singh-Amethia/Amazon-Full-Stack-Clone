@@ -3,45 +3,35 @@ import { db } from './firebase';
 import './Orders.css';
 import { useStateValue } from './StateProvider';
 import moment from 'moment';
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 import CheckoutProduct from './CheckoutProduct';
 
 const Orders = () =>{
+
     const [orders,setOrders] = useState([]);
     const [date,setDate] = useState(new Date());
     const [amount ,setAmount] =useState(0);
     const [{basket , totalPrice , user} , dispatch] = useStateValue();
     let response = {};
-    useEffect( ()=>{
-       if(user){
+
+    useEffect(()=>{
+
+       if(user) {
         const orderItems = [];
         const getDataFromFireStore = async ()=>{
-        const docRef = doc(db,'users',user?.uid);
-        const docSnap = await getDoc(docRef);
+        const docRef = doc(db,'users',user?.email);
+        const docSnap = await (docRef);
+        console.log('DocSnap :: ',docSnap);
         response = docSnap.data();
-        console.log('DOC DATA :::: ',response);
+        //console.log('DOC DATA :::: ',response);
         const {amount , basket : basketII , created } = response;//object destructuring
-        console.log('AMOUNT ::: ',amount);
-        console.log('BASKET ::: ',basketII);
-        console.log('CREATED ::: ',created);
         setOrders(basketII);
         setAmount(amount);
         setDate(created);
        };
-        getDataFromFireStore();
-        //  db.collection('users')
-        //    .doc(user?.uid)
-        //    .collection('orders')
-        //    .orderBy('created','desc')
-        //    .onSnapshot(snapshot =>{
-        //     snapshot.docs.map(doc=>({
-        //         id : doc.id,
-        //         data : doc.data()
-        //     }))
-        //    })
-
-       }else{
-        setOrders([]);
+        getDataFromFireStore();  
+       } else{
+         setOrders([]);
        }
     },[user]);
     console.log('ORDERS ::: ',orders);

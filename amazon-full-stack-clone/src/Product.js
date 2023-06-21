@@ -46,7 +46,8 @@ const Product = ({id,title,image,price,rating}) =>{
              alt="product_img"/>
         <Button onClickMethod={()=>{
           toast.success('Item Added to cart !!', {
-            autoClose:1000
+            autoClose:1000,
+            position : toast.POSITION.TOP_LEFT
             });
           addToCartHandler();
         }} actionText={'Add to Basket'}/>     

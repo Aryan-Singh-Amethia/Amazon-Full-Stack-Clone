@@ -39,3 +39,12 @@
     border-color: #a88734 ,#9c7e31 ,#846a29;
     color: #111;
 }
+
+.btn__disabled{
+    background-color: lightgray;
+}
+
+.payment__details > form > div > button:hover{
+    background: #fcd267;
+}
+
