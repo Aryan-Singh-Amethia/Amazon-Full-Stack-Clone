@@ -30,8 +30,8 @@ const CheckoutProduct = forwardRef(({id,title,image,price,rating,hide},ref)=>{
                 <div className='checkoutProduct__rating'>
                     {Array(rating)
                      .fill()
-                     .map(()=>(
-                        <p>⭐</p>
+                     .map((index)=>(
+                        <p key={index}>⭐</p>
                      ))}
                 </div>
                 {!hide &&
