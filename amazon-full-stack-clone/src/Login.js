@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setDoc , doc } from "firebase/firestore";
+import { setDoc , doc, collection } from "firebase/firestore";
 import { db } from "./firebase";
 
 const Login = () => {
@@ -36,17 +36,19 @@ const Login = () => {
 
   const registerHandler = (event) => {
     event.preventDefault();
-    async function addNewUserToFirestore(email,password){
-      await setDoc(doc(db, "users", email), {
-        email : email,
-        password : password
-      },{merge : true});
-    };
+  //   async function addNewUserToFirestore(email,password){
+  //     await setDoc(collection(db, "users",email), 
+  //     {},
+  //     {
+  //       merge : true
+  //     });
+  // };
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         console.log("user creation success !!!");
         console.log(auth);
-        addNewUserToFirestore(email,password);
+        //addNewUserToFirestore(email,password);
         navigate('/');
       })
       .catch((error) => {

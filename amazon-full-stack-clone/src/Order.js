@@ -13,26 +13,28 @@ const Order = () => {
    const navigate = useNavigate();
    const location = useLocation();
    const searchParams = new URLSearchParams(location.search);
-   const [orderList,setOrderList] = useState([]);
+   const [orderListIndv,setOrderListIndv] = useState([]);
    // Access individual query parameters
-   const orderId = searchParams.get('orderId');
-   const userId = searchParams.get('userId');
 
+   
+   const orderId = searchParams.get('orderId');
+   //const userId = searchParams.get('userId');
+   console.log('Order ID : : ',orderId);
    const [{ basket, totalPrice ,user}, dispatch] = useStateValue();
    
    useEffect(()=>{
-      const docRef = doc(db,'users',user?.email,`order_with_id_${orderId}`,userId);
+      const docRef = doc(db,user?.email,`${orderId}`);
       getDoc(docRef)
       .then(docSnap=>{
          if (docSnap.exists()) {
-            //console.log("Document data:", docSnap.data());
-            const data = docSnap.data();
+            console.log("Document data:", docSnap.data()?.orders);
+            const data = docSnap.data()?.orders;
             let ol =[];
             for(let field in data){
                ol.push(data[field]);
             }
-            console.log('ORDER LIST :: ',orderList);
-            setOrderList(ol);
+            console.log('ORDER LIST :: ',ol);
+            setOrderListIndv(ol);
           } else {
             console.log("No such document!");
           }
@@ -48,8 +50,9 @@ const Order = () => {
          </p>
          <div>
          {
-               orderList?.map(item=>(
+                (orderListIndv).map(item=>(
                 <CheckoutProduct
+                  key={item.id}
                   id={item.id}
                   title={item.title}
                   image ={item.image}
@@ -64,7 +67,10 @@ const Order = () => {
           <div className='buttons'>
           <Button
            onClickMethod={()=>{
-            navigate('/orders');
+            const urlSearchParams = new URLSearchParams();
+            //urlSearchParams.append('userId',userId);
+            urlSearchParams.append('orderId',orderId);
+            navigate(`/orders?${urlSearchParams.toString()}`);
            }}
            actionText={'View All Orders'}
            />  

@@ -17,7 +17,7 @@ const promise = loadStripe('pk_test_51McmhuSEw7WnUxNcdY7QtBx5qQSSnH0x3VbywDBg9Ei
 
 function App() {
   
-  const [{basket,totalPrice},dispach] = useStateValue();
+  const [{user,basket,totalPrice},dispach] = useStateValue();
 
   useEffect(()=>{
     //will only run the first time the component loads
@@ -66,7 +66,8 @@ function App() {
                    </Fragment>}/>   
           <Route path='/order'
            element={<Fragment>
-                     <Order/>
+                     <Order
+                      user={user}/>
                    </Fragment>}/>                               
         </Routes>  
         </div>

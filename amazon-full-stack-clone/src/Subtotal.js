@@ -59,14 +59,17 @@ const Subtotal = () => {
             const childPayload = {
                                   ...childData
                                 };
-            const userEmailRef = collection(db,'users',`${user?.email}`,`order_with_id_${orderId}`);
+            const userEmailRef = doc(db,`${user?.email}`,`${orderId}`);
             // Add a new document with a generated id.
-            const docRef = await addDoc(userEmailRef,childPayload);
-            console.log("Document written with ID: ", docRef.id);
-            const userId = docRef.id;
+            const docRef = await setDoc(userEmailRef,{
+              orderId : orderId,
+              orders : childData
+            });
+            //console.log("Document written with ID: ", docRef.id);
+            //const userId = docRef.id;
             const urlParams  = new URLSearchParams();
             urlParams.append('orderId',orderId);
-            urlParams.append('userId',userId);
+            //urlParams.append('userId',userId);
             history(`/payments?${urlParams.toString()}`);
           }
         }}
