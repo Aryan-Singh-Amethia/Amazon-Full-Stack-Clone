@@ -6,7 +6,7 @@ export const initialState = {
 const reducer = (state , action) =>{
       switch(action.type){
         case 'ADD_TO_BASKET' : {
-            console.log(`adding ${action.item.price} to ${state.totalPrice}`);
+           // console.log(`adding ${action.item.price} to ${state.totalPrice}`);
             return {
                 ...state,
                 basket : [...state.basket ,action.item] ,
@@ -29,7 +29,7 @@ const reducer = (state , action) =>{
             }else{
                 console.warn(`Cannot remove item with id ${action.id} as it's already not in the cart!!`);
             }
-            console.log(`Removing ${action.price} from ${state.totalPrice}`);
+            //console.log(`Removing ${action.price} from ${state.totalPrice}`);
             return {
                ...state, 
                basket : newObjects,

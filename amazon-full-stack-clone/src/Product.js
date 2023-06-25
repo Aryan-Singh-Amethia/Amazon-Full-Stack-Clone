@@ -31,7 +31,14 @@ const Product = ({id,title,image,price,rating}) =>{
    };
 
    return (
-     <div className='product'>
+     <div className='product' onClick={()=>{
+      const urlParams = new URLSearchParams();
+      urlParams.append('title',title);
+      urlParams.append('image',image);
+      urlParams.append('rating',rating);
+      urlParams.append('price',price);
+      navigate(`/product-detail?${urlParams.toString()}`);
+     }}>
         <div className='product__info'>
            <p>{title}</p>
            <p className='product__price'>
@@ -44,7 +51,8 @@ const Product = ({id,title,image,price,rating}) =>{
         </div>
         <img src={image}
              alt="product_img"/>
-        <Button onClickMethod={()=>{
+        <Button onClickMethod={(event)=>{
+          event.stopPropagation();
           toast.success('Item Added to cart !!', {
             autoClose:1000,
             position : toast.POSITION.TOP_LEFT

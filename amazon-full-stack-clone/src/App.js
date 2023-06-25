@@ -12,6 +12,7 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import Orders from './Orders';
 import Order from './Order';
+import ProductDetail from './ProductDetail';
 
 const promise = loadStripe('pk_test_51McmhuSEw7WnUxNcdY7QtBx5qQSSnH0x3VbywDBg9Ei2UEVzlwunOBQ4k5SI5NUlLxVK0mxdfjP7FMnuQyBSxUEB00mI4S3BCk');
 
@@ -22,7 +23,7 @@ function App() {
   useEffect(()=>{
     //will only run the first time the component loads
     auth.onAuthStateChanged(authUser=>{
-      console.log('THE USER IS >>>>',authUser);
+      //console.log('THE USER IS >>>>',authUser);
       if(authUser){
         dispach({
           type : 'SET_USER',
@@ -69,6 +70,10 @@ function App() {
                      <Order
                       user={user}/>
                    </Fragment>}/>                               
+          <Route path='/product-detail'   
+           element={<Fragment>
+                      <ProductDetail/>
+                    </Fragment>}/>    
         </Routes>  
         </div>
       </Router>  
