@@ -23,12 +23,15 @@ function Header() {
 
   const [fs, setFs] = useState([]);
 
-  document.getElementById('search')
-          .addEventListener('keyup',(event)=>{
-            if(event.key==='Enter'){
-                onSearchHandler();
-            }
-          })
+  useEffect(()=>{
+    
+    document.getElementById('search')
+    .addEventListener('keyup',(event)=>{
+      if(event.key==='Enter'){
+          onSearchHandler();
+      }
+    });
+  },[]);
 
   const onChangeHandler = (event) => {
     const searchText = event.target.value;
