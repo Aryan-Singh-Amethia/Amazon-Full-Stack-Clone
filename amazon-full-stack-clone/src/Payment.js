@@ -40,64 +40,43 @@ const Payment = () =>{
            console.log('RESPONSE IS ::::  ',response);
            setClientSecret(response.data.clientSecret); 
         };
+        console.log('Generating Client Secret ...');
         getClientSecret();
-    },[basket]);
+    },[basket,processing]);
 
     const handleSubmit = async (event) =>{
         // Do all fancy stripe things..
          event.preventDefault();
          setProcessing(true);
 
+         if (!stripe || !elements) {
+            // Stripe.js hasn't yet loaded.
+            // Make sure to disable form submission until Stripe.js has loaded.
+            return;
+          }
 
-        // Temp Fix for Payment issue  
+        await stripe.confirmPayment(clientSecret,{
+            payment_method  : {
+                card : elements.getElement(CardElement)
+            }
+         }).then(({paymentIntent})=>{
+            // paymentIntent = payment Confirmation
+            console.log('PAYMENT INTENT :: ',paymentIntent);
+            setProcessing(false);
+            setSucceeded(true);
+            setError(null)
+        });
          
-        //  await setDoc(doc(db,'users',user?.uid),{
-        //     basket : basket ,
-        //     amount : totalPrice,
-        //     created : new Date()
-        //  });
-
-         const userId = searchParams.get('userId');
-         const orderId= searchParams.get('orderId');
-         
-         const urlSearchParams = new URLSearchParams();
-         urlSearchParams.append('userId',userId);
-         urlSearchParams.append('orderId',orderId);
-         navigate(`/order?${urlSearchParams.toString()}`);
-         // Temporary Fix
-
-         //Temp Fix ends here
-
-        // await stripe.confirmPayment(clientSecret,{
-        //     payment_method  : {
-        //         card : elements.getElement(CardElement)
-        //     }
-        //  }).then(({paymentIntent})=>{
-        //     // paymentIntent = payment Confirmation
-        //     console.log('PAYMENT INTENT :: ',paymentIntent);
-        //     setProcessing(false);
-        //     setSucceeded(true);
-        //     setError(null);
-
-        //     // db.collection('users')
-        //     //   .doc(user?.uid)
-        //     //   .collection('orders')
-        //     //   .doc(paymentIntent.id)
-        //     //   .set({
-        //     //     basket : basket ,
-        //     //     amount : paymentIntent.amount,
-        //     //     created : paymentIntent.created
-        //     //   })
-
-        //     dispatch({
-        //         type:'EMPTY_BASKET'
-        //     });
-
-        //     navigate('/orders');
-        //  }).catch(error=>console.log(error));
-         
+            const userId = searchParams.get('userId');
+            const orderId= searchParams.get('orderId');
+            
+            const urlSearchParams = new URLSearchParams();
+            urlSearchParams.append('userId',userId);
+            urlSearchParams.append('orderId',orderId);
+            navigate(`/order?${urlSearchParams.toString()}`);    
 
     };
+
     const handleChange = (event) =>{
          setDisabled(event.empty);
          setError(event.error?event.error.message:"");

@@ -23,15 +23,13 @@ function Header() {
 
   const [fs, setFs] = useState([]);
 
-  useEffect(()=>{
-    
-    document.getElementById('search')
-    .addEventListener('keyup',(event)=>{
-      if(event.key==='Enter'){
-          onSearchHandler();
+  useEffect(() => {
+    document.getElementById("search").addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        onSearchHandler();
       }
     });
-  },[]);
+  }, []);
 
   const onChangeHandler = (event) => {
     const searchText = event.target.value;
@@ -42,42 +40,42 @@ function Header() {
     setValue(searchText);
   };
 
-  const onSearchHandler = () =>{
-    if(fs.length > 0 ){
-        const suggestion = fs[0];
-        const urlParams = new URLSearchParams();
-        urlParams.append("title", suggestion.title);
-        urlParams.append("image", suggestion.image);
-        urlParams.append("rating", suggestion.rating);
-        urlParams.append("price", suggestion.price);
-        navigate(`/product-detail?${urlParams.toString()}`);
-        setValue("");
+  const onSearchHandler = () => {
+    if (fs.length > 0) {
+      const suggestion = fs[0];
+      const urlParams = new URLSearchParams();
+      urlParams.append("title", suggestion.title);
+      urlParams.append("image", suggestion.image);
+      urlParams.append("rating", suggestion.rating);
+      urlParams.append("price", suggestion.price);
+      navigate(`/product-detail?${urlParams.toString()}`);
+      setValue("");
     }
-  }
+  };
 
-//   let counter = 0;
-//   useEffect(() => {
-//     //console.log("Inside use effect !!");
+  //   let counter = 0;
+  //   useEffect(() => {
+  //     //console.log("Inside use effect !!");
 
-//     if (value !== "" && fs.length > 0) {
-//       document.getElementById(fs[0].id).style.backgroundColor = "#FBFFDC";
-//       //document.getElementById(fs[0].id).style.backgroundColor='#FBFFDC';
+  //     if (value !== "" && fs.length > 0) {
+  //       document.getElementById(fs[0].id).style.backgroundColor = "#FBFFDC";
+  //       //document.getElementById(fs[0].id).style.backgroundColor='#FBFFDC';
 
-//       for (let i = 0; i < fs.length; i++) {
-//         document
-//           .getElementById(fs[i].id)
-//           .addEventListener("keydown", (event) => {
-//             event.preventDefault();
-//             console.log("Event Key ::", event.key);
-//             if (event.key === "ArrowDown") {
-//               console.log("inside if !!");
-//               document.getElementById(fs[counter].id).style.backgroundColor='#FBFFDC';
-//               counter = (counter + 1) % fs.length;
-//             }
-//           });
-//       }
-//     }
-//   }, [fs]);
+  //       for (let i = 0; i < fs.length; i++) {
+  //         document
+  //           .getElementById(fs[i].id)
+  //           .addEventListener("keydown", (event) => {
+  //             event.preventDefault();
+  //             console.log("Event Key ::", event.key);
+  //             if (event.key === "ArrowDown") {
+  //               console.log("inside if !!");
+  //               document.getElementById(fs[counter].id).style.backgroundColor='#FBFFDC';
+  //               counter = (counter + 1) % fs.length;
+  //             }
+  //           });
+  //       }
+  //     }
+  //   }, [fs]);
 
   return (
     <div className="header">
@@ -121,7 +119,7 @@ function Header() {
             })}
         </div>
       </div>
-      <SearchIcon className="header__searchIcon" onClick={onSearchHandler}/>
+      <SearchIcon className="header__searchIcon" onClick={onSearchHandler} />
       <div className="header__nav">
         <Link to={!user && "/login"}>
           <div className="header__option" onClick={handleAuthentication}>

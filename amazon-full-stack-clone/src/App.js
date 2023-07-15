@@ -14,7 +14,7 @@ import Orders from './Orders';
 import Order from './Order';
 import ProductDetail from './ProductDetail';
 
-const promise = loadStripe('pk_test_51McmhuSEw7WnUxNcdY7QtBx5qQSSnH0x3VbywDBg9Ei2UEVzlwunOBQ4k5SI5NUlLxVK0mxdfjP7FMnuQyBSxUEB00mI4S3BCk');
+const stripePromise = loadStripe('pk_test_51McmhuSEw7WnUxNcdY7QtBx5qQSSnH0x3VbywDBg9Ei2UEVzlwunOBQ4k5SI5NUlLxVK0mxdfjP7FMnuQyBSxUEB00mI4S3BCk');
 
 function App() {
   
@@ -58,7 +58,7 @@ function App() {
                     <Login/>
                    </Fragment>}/>
          <Route path='/payments'
-          element={<Elements stripe={promise}>
+          element={<Elements stripe={stripePromise}>
                     <Payment/>
                   </Elements>}/>  
           <Route path='/orders'
