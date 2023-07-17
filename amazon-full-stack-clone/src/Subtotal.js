@@ -8,7 +8,7 @@ import { v4 as uuid } from 'uuid';
 
 const Subtotal = () => {
   const [{ basket, totalPrice ,user}, dispatch] = useStateValue();
-  console.log("CONTEXT :: ", basket);
+  //console.log("CONTEXT :: ", basket);
   const history = useNavigate();
   return (
     <div className="subtotal">

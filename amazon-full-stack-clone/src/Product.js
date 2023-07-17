@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Product = ({id,title,image,price,rating}) =>{
    
    const [{basket,user}, dispatch] = useStateValue();
-   console.log("this is the basket >>>",basket);
+   //console.log("this is the basket >>>",basket);
    const navigate = useNavigate();
    const addToCartHandler = () =>{
       

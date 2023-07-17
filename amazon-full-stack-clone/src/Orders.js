@@ -64,9 +64,9 @@ const Orders = () => {
           }
         )}
       </div>
-      <div className="orders__total">
+      {/* <div className="orders__total">
         <h2>Your Order Total : ${Math.round(amount * 100) / 100}</h2>
-      </div>
+      </div> */}
     </div>
   );
 };
