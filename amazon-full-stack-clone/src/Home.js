@@ -2,6 +2,7 @@
  import Product from "./Product";
  import { v4 as uuid } from 'uuid';
  import { ToastContainer } from "react-toastify";
+import ProductCarousel from "./ProductCarousel";
 
 const Home = () =>{
 
@@ -14,6 +15,9 @@ const Home = () =>{
                alt="prime-background-image"/>
            </div>
            <ToastContainer autoClose={500}/>
+           <div className="carousel__row">
+              <ProductCarousel/>
+           </div>
            <div className="home__row">
              <Product
                 id={uuid()}
