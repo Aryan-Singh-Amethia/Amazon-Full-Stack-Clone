@@ -7,9 +7,10 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const [{ basket, totalPrice, user }, dispatcher] = useStateValue();
+  const [{ basket, totalPrice, user }, dispatch] = useStateValue();
 
   const navigate = useNavigate();
+   
 
   return (
     <div className="checkout">

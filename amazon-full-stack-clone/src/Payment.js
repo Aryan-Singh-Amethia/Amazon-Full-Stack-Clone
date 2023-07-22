@@ -81,6 +81,7 @@ const Payment = () => {
     urlSearchParams.append("userId", userId);
     urlSearchParams.append("orderId", orderId);
     navigate(`/order?${urlSearchParams.toString()}`);
+    dispatch({ type: "EMPTY_BASKET" });
   };
 
   const handleChange = (event) => {
@@ -91,7 +92,7 @@ const Payment = () => {
   const { orderId, userId } = useParams();
 
 
-  if(basket.length === 0) navigate('/');
+  //if(basket.length === 0) navigate('/');
 
   return (
     <div className="payment">
@@ -147,7 +148,6 @@ const Payment = () => {
                 />
                 <button
                   disabled={processing || disabled || succeeded}
-                  onClick={() => dispatch({ type: "EMPTY_BASKET" })}
                 >
                   <span>{processing ? <p>Processing</p> : "Buy Now"}</span>
                 </button>

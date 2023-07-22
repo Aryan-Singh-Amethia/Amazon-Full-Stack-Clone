@@ -36,12 +36,20 @@ const CheckoutProduct = forwardRef(({id,title,image,price,rating,hide},ref)=>{
                 </div>
                 {!hide &&
                     <Button
-                      onClickMethod={()=>{
+                      onClickMethod={
+                        ()=>{
                         toast.warn('Removing Item rom Cart !!',
                         {
                             autoClose:1000
                         })
-                        onRemoveHandler();}}
+                        dispatcher({
+                            type:'REMOVE_FROM_BASKET',
+                            id : id,
+                            price : price
+                          });
+                
+                    }
+                    }
                       actionText={'Remove from Cart'}
                     />
                 }

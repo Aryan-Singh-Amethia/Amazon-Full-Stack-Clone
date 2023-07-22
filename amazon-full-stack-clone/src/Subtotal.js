@@ -10,6 +10,8 @@ const Subtotal = () => {
   const [{ basket, totalPrice ,user}, dispatch] = useStateValue();
   //console.log("CONTEXT :: ", basket);
   const history = useNavigate();
+
+
   return (
     <div className="subtotal">
       <CurrencyFormat
@@ -27,7 +29,7 @@ const Subtotal = () => {
           </div>
         )}
         decimalScale={2}
-        value={totalPrice}
+        value={basket.length === 0 ? 0 : totalPrice}
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}
