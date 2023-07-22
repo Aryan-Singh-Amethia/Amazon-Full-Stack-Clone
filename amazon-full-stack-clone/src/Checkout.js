@@ -4,9 +4,12 @@ import Subtotal from "./Subtotal.js";
 import CheckoutProduct from "./CheckoutProduct";
 import FlipMove from "react-flip-move";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [{ basket, totalPrice, user }, dispatcher] = useStateValue();
+
+  const navigate = useNavigate();
 
   return (
     <div className="checkout">
@@ -38,10 +41,17 @@ const Checkout = () => {
               rating={item.rating}
             />
           ))}
+          {basket.length === 0 && (
+            <div className="checkout__emptycart">
+              <img src="/empty-cart.png" 
+                   alt="Empty Cart Image"
+                   onClick={()=> navigate('/')} />
+            </div>
+          )}
         </FlipMove>
       </div>
       <div className="checkout__right">
-        <Subtotal/>
+        <Subtotal />
         <ToastContainer autoClose={500} />
       </div>
     </div>

@@ -23,3 +23,10 @@
 .checkout__right {
     margin-left: 20%;
 }
+
+.checkout__emptycart{
+    height: 30%;
+    width: 30%;
+    padding: 3rem;
+    margin: 13px solid black;
+}

@@ -1,6 +1,6 @@
 .footer__background {
   background-color: #232F3E;
-  height: 250px;
+  height: 60px;
   padding: 100px;
   display: flex;
   justify-content: space-around;
@@ -77,7 +77,7 @@ h2 {
 }
 
 .footer__logo__container > img{
-    height: 70px;
-    width: 70px;
+    height: 40px;
+    width: 40px;
 }
 

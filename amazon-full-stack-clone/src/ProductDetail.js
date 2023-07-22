@@ -22,7 +22,8 @@ const ProductDetail = () => {
          title={title}
          image={image}
          price={price}
-         rating={rating}/>
+         rating={rating}
+         addToCartBtn={true}/>
         <Button
           onClickMethod={()=>navigate('/')}
           actionText={'Back To Home'}/>

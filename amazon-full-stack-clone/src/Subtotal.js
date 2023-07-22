@@ -59,12 +59,12 @@ const Subtotal = () => {
             const childPayload = {
                                   ...childData
                                 };
-            const userEmailRef = doc(db,`${user?.email}`,`${orderId}`);
+            //const userEmailRef = doc(db,`${user?.email}`,`${orderId}`);
             // Add a new document with a generated id.
-            const docRef = await setDoc(userEmailRef,{
+            const docRef = await setDoc(doc(db,`${user?.email}`,`${orderId}`),{
               orderId : orderId,
               orders : childData
-            });
+            },{merge:true});
             //console.log("Document written with ID: ", docRef.id);
             //const userId = docRef.id;
             const urlParams  = new URLSearchParams();

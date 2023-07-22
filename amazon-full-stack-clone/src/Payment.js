@@ -89,6 +89,10 @@ const Payment = () => {
   };
 
   const { orderId, userId } = useParams();
+
+
+  if(basket.length === 0) navigate('/');
+
   return (
     <div className="payment">
       <div className="payment__incart">
